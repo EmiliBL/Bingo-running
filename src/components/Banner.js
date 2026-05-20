@@ -5,7 +5,7 @@ import './Banner.css';
 export default function Banner({ combined }) {
   return (
     <div className="banner">
-      <img src="/bg.png" alt="Picture of friends" className="banner-photo-bg" />
+      <img src="/placeholder.png" alt="Picture of friends" className="banner-photo-bg" />
       <div className="banner-overlay" />
 
       <div className="banner-top">
