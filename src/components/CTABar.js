@@ -10,24 +10,21 @@ export default function CTABar({ onAction, loading, pendingIndex, tapCount }) {
       <button
         className="cta cta--ghost"
         onClick={() => onAction('break')}
-        disabled={loading}
-      >
+        disabled={loading}>
         Didn't feel like it
       </button>
 
       <button
         className="cta cta--mid"
         onClick={() => onAction('shit_run')}
-        disabled={loading}
-      >
+        disabled={loading}>
         Shit run, but did it
       </button>
 
       <button
         className="cta cta--primary"
         onClick={() => onAction('ran')}
-        disabled={loading}
-      >
+        disabled={loading}>
         {loading ? 'Sending…' : 'I RAN TODAY 🏃'}
       </button>
     </div>

@@ -4,9 +4,8 @@
   --butter: #F9FFB3;
   --orange: #FB5012;
   --brown: #532F07;
-  --white: #ffffff;
 
-  --font-h1: 'Caprasimo', cursive;
+  --font-h1: 'Caprasimo', sans-serif;
   --font-h2: 'Prompt', sans-serif;
   --font-body: 'Libre Franklin', sans-serif;
 }
@@ -20,9 +19,9 @@
 
 html, body {
   height: 100%;
-  background: var(--light-blue);
+  background: var(--brown);
   font-family: var(--font-body);
-  color: var(--brown);
+  color: var(--butter);
   overscroll-behavior: none;
 }
 

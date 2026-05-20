@@ -1,10 +1,8 @@
 .cta-bar {
-  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
   padding: 12px 16px 28px;
-  background: linear-gradient(to top, var(--light-blue) 70%, transparent);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -14,9 +12,9 @@
   width: 100%;
   padding: 14px 20px;
   border-radius: 99px;
-  font-family: var(--font-h2);
+  font-family: var(--font-body);
   font-weight: 600;
-  font-size: 15px;
+  font-size: 16px;
   letter-spacing: 0.3px;
   transition: transform 0.1s ease, opacity 0.1s ease;
 }
@@ -32,21 +30,20 @@
 /* Ghost — "Didn't feel like it" */
 .cta--ghost {
   background: transparent;
-  border: 1.5px solid var(--brown);
-  color: var(--brown);
+  border: 1px solid var(--light-blue);
+  color: var(--light-blue);
 }
 
 /* Mid — "Shit run, but did it" */
 .cta--mid {
   background: transparent;
-  border: 1.5px solid var(--orange);
+  border: 1px solid var(--orange);
   color: var(--orange);
 }
 
 /* Primary — "I RAN TODAY" */
 .cta--primary {
   background: var(--butter);
-  border: 2px solid var(--brown);
   color: var(--brown);
-  font-size: 16px;
+  font-size: 20px;
 }

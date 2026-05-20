@@ -2,7 +2,7 @@
   min-height: 100vh;
   max-width: 430px;
   margin: 0 auto;
-  background: var(--light-blue);
+  background: var(--brown);
   position: relative;
 }
 
@@ -12,16 +12,16 @@
 
 .app-title {
   font-family: var(--font-h1);
-  font-size: 42px;
-  color: var(--brown);
+  font-size: 48px;
+  color: var(--turquoise);
   line-height: 1.05;
 }
 
 .app-subtitle {
   font-family: var(--font-h2);
   font-weight: 600;
-  font-size: 16px;
-  color: var(--brown);
-  opacity: 0.7;
+  font-size: 32px;
+  line-height: 1.05;
+  color: var(--butter);
   margin-top: 6px;
 }

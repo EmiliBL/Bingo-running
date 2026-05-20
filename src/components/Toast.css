@@ -1,10 +1,12 @@
+/* Toast is the small notification that appears at the top of the screen if email doesn't send */
+
 .toast {
   position: fixed;
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background: var(--brown);
-  color: var(--butter);
+  background: #FFB3DE;
+  color: var(--brown);
   font-family: var(--font-body);
   font-size: 14px;
   padding: 10px 22px;

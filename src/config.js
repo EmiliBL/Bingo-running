@@ -17,12 +17,12 @@ export const USERS = {
   emilie: {
     name: 'Emilie',
     email: 'EMILIE_EMAIL@example.com',
-    photo: '/emilie.jpg',              // Drop emilie.jpg in /public folder
+    photo: '/emilie.svg',              // Drop emilie.svg in /public folder
   },
   julie: {
     name: 'Julie',
     email: 'JULIE_EMAIL@example.com',
-    photo: '/julie.jpg',               // Drop julie.jpg in /public folder
+    photo: '/julie.svg',               // Drop julie.svg in /public folder
   },
 };
 

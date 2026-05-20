@@ -1,16 +1,13 @@
 import React from 'react';
 import './BingoCard.css';
 
-// Sticker images — drop these in /public/stickers/
-// run_sticker.png and break_sticker.png
-// For now we use colored circles as fallback
 
 export default function BingoCard({ board, nextEmptyIndex, onTapCell }) {
   return (
     <div className="bingo-wrap">
       <div className="bingo-header">
         <h2 className="bingo-title">Bingo Card</h2>
-        <p className="bingo-hint">Tap to log a run · Tap 3× for break</p>
+        <p className="bingo-hint">Tap 1 time for run, tap two times for break</p>
       </div>
 
       <div className="bingo-grid">
@@ -38,11 +35,11 @@ function Cell({ state, isNext, onTap }) {
         !state && !isNext ? 'bingo-cell--empty' : '',
       ].join(' ')}
       onClick={onTap}
-      disabled={!!state && state !== null}
+      disabled={false}
     >
       {state === 'run' && (
         <img
-          src="/stickers/run_sticker.png"
+          src="/stickers/run_sticker.svg"
           alt="ran"
           className="cell-sticker"
           onError={(e) => { e.target.style.display = 'none'; }}
@@ -50,7 +47,7 @@ function Cell({ state, isNext, onTap }) {
       )}
       {state === 'break' && (
         <img
-          src="/stickers/break_sticker.png"
+          src="/stickers/break_sticker.svg"
           alt="break"
           className="cell-sticker"
           onError={(e) => { e.target.style.display = 'none'; }}

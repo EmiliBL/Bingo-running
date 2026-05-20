@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useBingo } from './hooks/useBingo';
 import { initEmailJS, sendRunEmail } from './utils/email';
 import Banner from './components/Banner';
@@ -18,95 +18,104 @@ export default function App() {
     nextEmptyIndex,
     markRun,
     markBreak,
+    incrementCount,
     syncJulieCount,
     resetBoard,
   } = useBingo();
 
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState('');
+  const [streakTimer, setStreakTimer] = useState(null);
+  const lastTappedState = useRef(null);
 
   // ── Handle magic sync link ──────────────────────────
-  // When Julie taps the email link, URL has ?sync_user=emilie&count=12
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const syncUser = params.get('sync_user');
     const count = parseInt(params.get('count'), 10);
 
     if (syncUser && !isNaN(count)) {
-      // Only sync the OTHER user's count into our localStorage
       if (syncUser !== CURRENT_USER) {
         syncJulieCount(count);
         setToast(`${USERS[syncUser].name}'s count synced! 🔄`);
       }
-      // Clean the URL without reloading
       window.history.replaceState({}, '', window.location.pathname);
     }
   }, [syncJulieCount]);
 
-  // ── Handle CTA taps ────────────────────────────────
-  const handleAction = useCallback(async (type) => {
-    if (nextEmptyIndex === -1) {
-      setToast('Board complete! 🎉 New month, new card.');
-      return;
-    }
+  // ── Cell tap — tap 1 = run, tap 2 = break ──────────
+  const handleCellTap = (index) => {
+    if (streakTimer) clearTimeout(streakTimer);
 
-    const isRun = type === 'ran' || type === 'shit_run';
-
-    // Update the board locally first (feels instant)
-    if (isRun) {
-      markRun(nextEmptyIndex);
+    let nextState;
+    if (board[index] === null) {
+      nextState = 'run';
+    } else if (board[index] === 'run') {
+      nextState = 'break';
     } else {
-      markBreak(nextEmptyIndex);
+      nextState = 'run';
     }
 
-    // Send email to the other person
+    if (nextState === 'run') {
+      markRun(index);
+      setToast('Run 🏃 — tap again for break');
+    } else {
+      markBreak(index);
+      setToast('Break 🛋️ — tap again for run');
+    }
+
+    lastTappedState.current = nextState;
+
+    const timer = setTimeout(() => {
+      if (lastTappedState.current === 'run') {
+        incrementCount();
+        setToast('Run counted! 🔥');
+      }
+      setStreakTimer(null);
+    }, 3000);
+
+    setStreakTimer(timer);
+  };
+
+  // ── CTAs — only send email, no board changes ────────
+  const handleAction = useCallback(async (type) => {
     setLoading(true);
-    const newCount = isRun ? myCount + 1 : myCount;
-    const success = await sendRunEmail(type, newCount);
+    const success = await sendRunEmail(type, myCount);
     setLoading(false);
 
-    if (success) {
-      const msgs = {
-        ran: 'Run logged! Julie got your message 📬',
-        shit_run: 'Logged! Even a shit run counts 💪',
-        break: 'Rest day logged 🛋️',
-      };
-      setToast(msgs[type]);
-    } else {
-      setToast('Logged! (Email failed — check config)');
-    }
-  }, [nextEmptyIndex, markRun, markBreak, myCount]);
+    const msgs = {
+      ran: 'Julie got your message 📬',
+      shit_run: 'Julie got your message 📬',
+      break: 'Not feeling it today — Julie knows 💛',
+    };
+    setToast(success ? msgs[type] : 'Email failed — check config');
+  }, [myCount]);
 
   return (
     <div className="app">
       <Toast message={toast} onDone={() => setToast('')} />
 
-      {/* Header */}
       <div className="app-header">
         <h1 className="app-title">Running<br />Bingo</h1>
         <p className="app-subtitle">The running support group</p>
       </div>
 
-      {/* Banner with photos + counter */}
       <Banner combined={combined} />
 
-      {/* Bingo grid */}
-      <BingoCard
-        board={board}
-        nextEmptyIndex={nextEmptyIndex}
-        onTapCell={() => {}} /* tapping cell is decorative; CTAs do the action */
-      />
+      <div className="app-bingo-section">
+        <BingoCard
+          board={board}
+          nextEmptyIndex={nextEmptyIndex}
+          onTapCell={handleCellTap}
+        />
+      </div>
 
-      {/* Spacer so content isn't hidden behind fixed CTAs */}
-      <div style={{ height: 160 }} />
 
-      {/* Fixed bottom CTAs */}
       <CTABar
         onAction={handleAction}
         loading={loading}
       />
 
-      {/* Dev only: reset board */}
       {process.env.NODE_ENV === 'development' && (
         <button
           onClick={resetBoard}
@@ -114,7 +123,7 @@ export default function App() {
             position: 'fixed', top: 8, right: 8,
             background: 'rgba(0,0,0,0.1)', border: 'none',
             borderRadius: 8, padding: '4px 8px',
-            fontSize: 11, color: '#532F07', cursor: 'pointer'
+            fontSize: 11, color: '#FFB3DE', cursor: 'pointer'
           }}
         >
           reset

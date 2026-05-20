@@ -8,23 +8,24 @@
 }
 
 .bingo-title {
-  font-family: var(--font-h2);
+  font-family: var(--font-h1);
   font-weight: 600;
-  font-size: 22px;
-  color: var(--brown);
+  font-size: 32px;
+  color: var(--butter);
 }
 
 .bingo-hint {
   font-family: var(--font-body);
-  font-size: 12px;
-  color: var(--brown);
+  font-style: italic;
+  font-size: 11px;
+  color: var(--light-blue);
   opacity: 0.55;
   margin-top: 3px;
 }
 
 .bingo-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 8px;
   background: var(--turquoise);
   border-radius: 20px;
@@ -34,51 +35,25 @@
 .bingo-cell {
   aspect-ratio: 1;
   border-radius: 50%;
-  border: 2px solid var(--brown);
-  background: var(--light-blue);
+  border: 1px solid var(--orange);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.12s ease, background 0.15s ease;
   position: relative;
   overflow: hidden;
   padding: 0;
+  background: var(--turquoise);
 }
 
 .bingo-cell--next {
-  border-color: var(--orange);
-  border-width: 2.5px;
-  animation: pulse 2s ease-in-out infinite;
+  border: 1px solid var(--orange);
 }
 
 .bingo-cell--run {
-  background: var(--butter);
-  border-color: var(--orange);
-  border-width: 2px;
+  background: var(--turquoise);
 }
 
 .bingo-cell--break {
-  background: #e0e0e0;
-  border-color: #aaa;
-  border-width: 2px;
+  background: var(--turquoise);
 }
 
-.bingo-cell--empty {
-  opacity: 0.5;
-}
-
-.bingo-cell:not(:disabled):active {
-  transform: scale(0.92);
-}
-
-.cell-sticker {
-  width: 90%;
-  height: 90%;
-  object-fit: contain;
-  border-radius: 50%;
-}
-
-@keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(251, 80, 18, 0.4); }
-  50%       { box-shadow: 0 0 0 6px rgba(251, 80, 18, 0); }
-}

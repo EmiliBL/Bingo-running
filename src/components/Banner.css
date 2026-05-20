@@ -1,75 +1,100 @@
 .banner {
   position: relative;
   width: 100%;
-  height: 200px;
-  overflow: hidden;
-  border-radius: 0 0 24px 24px;
+  height: 320px;
+  overflow: visible;
 }
 
-.banner-gradient {
+.banner-photo-bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 30% 40%, #FB5012 0%, #FB5012cc 30%, #A3E7FC 100%);
-  z-index: 0;
+  width: 100%;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 0;
 }
 
-.banner-photos {
-  position: relative;
-  z-index: 1;
-  height: 100%;
+/* ── Top row ── */
+
+
+.banner-streak {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(6px);
+  border-radius: 99px;
+  padding: 7px 14px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--brown);
+  letter-spacing: 0.2px;
+}
+.banner-top {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  right: 14px;
   display: flex;
-  align-items: flex-end;
   justify-content: space-between;
-  padding: 0 28px 20px;
+  align-items: center;
+  z-index: 2;
 }
 
-.banner-photo-wrap {
+.banner-camera {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(6px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* ── Bottom avatars ── */
+.banner-bottom {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 28px;
+  z-index: 3;
+}
+
+.banner-avatar-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
 }
 
-.banner-photo {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--white);
-  background: var(--butter);
-}
-
-.banner-name {
+.banner-avatar-name {
   font-family: var(--font-h2);
   font-weight: 600;
-  font-size: 15px;
-  color: var(--brown);
-  text-shadow: 0 1px 3px rgba(255,255,255,0.4);
+  font-style: italic;
+  font-size: 24px;
+  color: var(--light-blue);
 }
 
-.banner-counter {
+.banner-middle-icon {
+  width: 52px;
+  height: 52px;
+  background: var(--orange);
+  border-radius: 50%;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 2px;
-  background: rgba(255,255,255,0.75);
-  backdrop-filter: blur(6px);
-  border-radius: 14px;
-  padding: 10px 14px;
-  margin-bottom: 8px;
+  justify-content: center;
+  overflow: hidden;
 }
 
-.banner-counter-number {
-  font-family: var(--font-h1);
-  font-size: 26px;
-  color: var(--brown);
-  line-height: 1;
-}
-
-.banner-counter-label {
-  font-family: var(--font-body);
-  font-size: 10px;
-  color: var(--brown);
-  opacity: 0.7;
-  letter-spacing: 0.5px;
+.banner-icon {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
 }
