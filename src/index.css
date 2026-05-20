@@ -1,0 +1,38 @@
+:root {
+  --turquoise: #A3E7FC;
+  --light-blue: #E4F7FE;
+  --butter: #F9FFB3;
+  --orange: #FB5012;
+  --brown: #532F07;
+  --white: #ffffff;
+
+  --font-h1: 'Caprasimo', cursive;
+  --font-h2: 'Prompt', sans-serif;
+  --font-body: 'Libre Franklin', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  height: 100%;
+  background: var(--light-blue);
+  font-family: var(--font-body);
+  color: var(--brown);
+  overscroll-behavior: none;
+}
+
+#root {
+  height: 100%;
+}
+
+button {
+  cursor: pointer;
+  font-family: var(--font-body);
+  border: none;
+  outline: none;
+}

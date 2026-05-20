@@ -1,0 +1,75 @@
+.banner {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 0 0 24px 24px;
+}
+
+.banner-gradient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 40%, #FB5012 0%, #FB5012cc 30%, #A3E7FC 100%);
+  z-index: 0;
+}
+
+.banner-photos {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 28px 20px;
+}
+
+.banner-photo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.banner-photo {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--white);
+  background: var(--butter);
+}
+
+.banner-name {
+  font-family: var(--font-h2);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--brown);
+  text-shadow: 0 1px 3px rgba(255,255,255,0.4);
+}
+
+.banner-counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(6px);
+  border-radius: 14px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+}
+
+.banner-counter-number {
+  font-family: var(--font-h1);
+  font-size: 26px;
+  color: var(--brown);
+  line-height: 1;
+}
+
+.banner-counter-label {
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: var(--brown);
+  opacity: 0.7;
+  letter-spacing: 0.5px;
+}
