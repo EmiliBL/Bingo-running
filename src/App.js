@@ -58,10 +58,10 @@ export default function App() {
 
     if (nextState === 'run') {
       markRun(index);
-      setToast('Run 🏃 — tap again for break');
+      setToast('Run 🏋️‍♀️ · tap again for break');
     } else {
       markBreak(index);
-      setToast('Break 🛋️ — tap again for run');
+      setToast('Break 🛋️ · tap again for run');
     }
 
     lastTappedState.current = nextState;
